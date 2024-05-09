@@ -1,15 +1,14 @@
 [submodule "reshade-unlocked"]
-	path = reshade-unlocked
 	url = https://github.com/elbadcode/reshade-unlocked
 [submodule "genshin-fps-unlock"]
-	path = genshin-fps-unlock
+	path = Include/genshin-fps-unlock
 	url = https://github.com/elbadcode/genshin-fps-unlock
 [submodule "3dmigoto"]
-	path = 3dmigoto
+	path = Include/3dmigoto
 	url = https://github.com/elbadcode/3dmigoto
 [submodule "genshin-utility"]
-	path = genshin-utility
+	path = Include/genshin-utility
 	url = https://github.com/elbadcode/genshin-utility
 [submodule "reshadeeffectshadertoggler"]
-	path = reshadeeffectshadertoggler
+	path = Include/reshadeeffectshadertoggler
 	url = https://github.com/elbadcode/reshadeeffectshadertoggler

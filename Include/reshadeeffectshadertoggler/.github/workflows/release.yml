@@ -1,0 +1,55 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Release
+
+on: 
+  push:
+    tags:
+    - '*'
+    
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: src/ReshadeEffectShaderToggler.sln
+
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  BUILD_CONFIGURATION: Release
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Build x64
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: msbuild /m /property:Platform=x64 /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+    - name: Build x86
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: msbuild /m /property:Platform=x86 /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+      
+    - name: Archive Release
+      uses: vimtor/action-zip@v1.1
+      with:
+        files: src/x64/Release/ReshadeEffectShaderToggler.addon64 src/Win32/Release/ReshadeEffectShaderToggler.addon32 LICENSE README.md Shaders/
+        recursive: true
+        dest: release.zip
+        
+    - name: Release
+      uses: ncipollo/release-action@v1.12.0
+      with:
+        artifacts: "release.zip"
+        generateReleaseNotes: 'true'

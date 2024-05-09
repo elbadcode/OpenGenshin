@@ -1,0 +1,13 @@
+[submodule "deps/sigmatch"]
+	path = deps/sigmatch
+	url = https://github.com/SpriteOvO/sigmatch.git
+[submodule "deps/minhook"]
+	path = deps/minhook
+	url = https://github.com/TsudaKageyu/minhook.git
+[submodule "deps/reshade"]
+	path = deps/reshade
+	url = https://github.com/crosire/reshade.git
+	branch = addon
+[submodule "deps/robin-map"]
+	path = deps/robin-map
+	url = https://github.com/Tessil/robin-map.git
