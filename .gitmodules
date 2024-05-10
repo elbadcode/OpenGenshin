@@ -15,4 +15,5 @@
 	url = http://github.com/elbadcode/reshadeeffectshadertoggler
 [submodule "Include/3dmigoto"]
 	path = Include/3dmigoto
+	branch = GIMI
 	url = https://github.com/elbadcode/3dmigoto
